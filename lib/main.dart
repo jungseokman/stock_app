@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:stock_app/theme.dart';
+import 'package:hive/hive.dart';
+import 'package:stock_app/config/theme.dart';
+import 'package:stock_app/data/source/local/company_listing_entity.dart';
 
 void main() {
+  Hive.registerAdapter(CompanyListingEntityAdapter());
   runApp(const MyApp());
 }
+
+//8XBGTY0XOB5C410Q
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
