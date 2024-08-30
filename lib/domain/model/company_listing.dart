@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:equatable/equatable.dart';
 
 class CompanyListing extends Equatable {
@@ -22,7 +20,7 @@ class CompanyListing extends Equatable {
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
       'symbol': symbol,
       'name': name,
@@ -30,18 +28,13 @@ class CompanyListing extends Equatable {
     };
   }
 
-  factory CompanyListing.fromMap(Map<String, dynamic> map) {
+  factory CompanyListing.fromJson(Map<String, dynamic> map) {
     return CompanyListing(
       symbol: map['symbol'] ?? '',
       name: map['name'] ?? '',
       exchange: map['exchange'] ?? '',
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory CompanyListing.fromJson(String source) =>
-      CompanyListing.fromMap(json.decode(source));
 
   @override
   String toString() =>
