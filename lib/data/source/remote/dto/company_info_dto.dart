@@ -46,11 +46,11 @@ class CompanyInfoDto extends Equatable {
 
   factory CompanyInfoDto.fromMap(Map<String, dynamic> map) {
     return CompanyInfoDto(
-      symbol: map['symbol'],
-      description: map['description'],
-      name: map['name'],
-      country: map['country'],
-      industry: map['industry'],
+      symbol: map['Symbol'],
+      description: map['Description'],
+      name: map['Name'],
+      country: map['Country'],
+      industry: map['Industry'],
     );
   }
 
