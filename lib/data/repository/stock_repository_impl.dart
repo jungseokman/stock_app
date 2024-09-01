@@ -48,8 +48,12 @@ class StockRepositoryImpl implements StockRepository {
   }
 
   @override
-  Future<Result<CompanyInfo>> getCompanyInfo(String symbol) {
-    // TODO: implement getCompanyInfo
-    throw UnimplementedError();
+  Future<Result<CompanyInfo>> getCompanyInfo(String symbol) async {
+    try {
+      final dto = await _api.getCompanyInfo(symbol: symbol);
+      return Result.success(dto.toCompanyInfo());
+    } catch (e) {
+      return Result.error(Exception("회사 정보 로드 실패!! : ${e.toString()}"));
+    }
   }
 }

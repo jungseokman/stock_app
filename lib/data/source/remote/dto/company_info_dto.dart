@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -31,4 +33,29 @@ class CompanyInfoDto extends Equatable {
       industry,
     ];
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'symbol': symbol,
+      'description': description,
+      'name': name,
+      'country': country,
+      'industry': industry,
+    };
+  }
+
+  factory CompanyInfoDto.fromMap(Map<String, dynamic> map) {
+    return CompanyInfoDto(
+      symbol: map['symbol'],
+      description: map['description'],
+      name: map['name'],
+      country: map['country'],
+      industry: map['industry'],
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory CompanyInfoDto.fromJson(String source) =>
+      CompanyInfoDto.fromMap(json.decode(source));
 }

@@ -1,4 +1,5 @@
 import 'package:http/http.dart' as http;
+import 'package:stock_app/data/source/remote/dto/company_info_dto.dart';
 
 class StockApi {
   static const baseUrl = "https://www.alphavantage.co";
@@ -13,11 +14,13 @@ class StockApi {
         Uri.parse("$baseUrl/query?function=LISTING_STATUS&apikey=$apiKey"));
   }
 
-  Future<http.Response> getCompanyInfo({
+  Future<CompanyInfoDto> getCompanyInfo({
     String apiKey = apiKey,
     required String symbol,
   }) async {
-    return await _client.get(Uri.parse(
+    final response = await _client.get(Uri.parse(
         "$baseUrl/query?function=OVERVIEW&symbol=$symbol&apikey=$apiKey"));
+
+    return CompanyInfoDto.fromJson(response.body);
   }
 }
